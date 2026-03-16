@@ -1,652 +1,1047 @@
 <!DOCTYPE html>
-<html lang="bn">
+<html lang="en">
 <head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Paico | #1 B2B Marketplace</title>
+<link rel="icon" type="image/png" href="https://marketplace.paicobd.com/assets/icons/favicon.png">
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Outfit:wght@300;400;500;600&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+<style>
+* { margin: 0; padding: 0; box-sizing: border-box; }
 
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Paico | #1 Marketplace of Bangladesh.">
-
-    <meta name="keywords" content="paico, paico, paico, paicobd, paikari, paikari dame, dhaka, chawkbazar, বাংলাদেশ পাইকারি মার্কেট, online wholesale Bangladesh, পাইকারি পণ্য, B2B marketplace Bangladesh, bulk buying">
-    
-    <meta property="og:title" content="Paico #1 Marketplace of Bangladesh">
-    <meta property="og:description" content="#1 Marketplace of the country" >
-    <meta property="og:image" content="https://marketplace.paicobd.com/assets/uploads/logo.png">
-    <meta property="og:url" content="https://paicobd.com">
-
-    <title>Paico | #1 Marketplace of the country </title>
-
-    <link rel="icon" type="image/png" href="https://marketplace.paicobd.com/assets/uploads/favicon.ico">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
-    <script type="application/ld+json">
-  {
-  "@context": "https://schema.org",
-  "@graph": [
-    {
-      "@type": "WebSite",
-      "@id": "https://marketplace.paicobd.com/#website",
-      "url": "https://marketplace.paicobd.com",
-      "name": "Paico Marketplace",
-      "alternateName": "Paico",
-      "publisher": {
-        "@id": "https://www.paicobd.com/#organization"
-      },
-      "potentialAction": {
-        "@type": "SearchAction",
-        "target": {
-          "@type": "EntryPoint",
-          "urlTemplate": "https://marketplace.paicobd.com/search-result.php?search_text={search_term}"
-        },
-        "query-input": "required name=search_term"
-      }
-    },
-
-    {
-      "@type": "CollectionPage",
-      "@id": "https://marketplace.paicobd.com/#marketplace",
-      "name": "Paico B2b Marketplace",
-      "url": "https://marketplace.paicobd.com",
-      "description": "Paico Marketplace connects suppliers and buyers across Bangladesh. Discover wholesale products across beauty, food, healthcare, personal care and more.",
-      "isPartOf": {
-        "@id": "https://www.paicobd.com/#website"
-      }
-    },
-
-    {
-      "@type": "ItemList",
-      "@id": "https://marketplace.paicobd.com/#categories",
-      "name": "Marketplace Categories",
-      "itemListElement": [
-        {
-          "@type": "SiteNavigationElement",
-          "position": 1,
-          "name": "Categories",
-          "url": "https://marketplace.paicobd.com/categories/category.php?id=1&type=top-category"
-        }
-      ]
-    },
-
-    {
-      "@type": "ItemList",
-      "@id": "https://marketplace.paicobd.com/#support",
-      "name": "Help & Support",
-      "itemListElement": [
-        {
-          "@type": "SiteNavigationElement",
-          "position": 1,
-          "name": "About Us",
-          "url": "https://marketplace.paicobd.com/about.php"
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 2,
-          "name": "FAQ",
-          "url": "https://marketplace.paicobd.com/faq.php"
-        },
-        {
-          "@type": "SiteNavigationElement",
-          "position": 3,
-          "name": "Support",
-          "url": "https://marketplace.paicobd.com/support.php"
-        }
-      ]
-    }
-  ]
+:root {
+  --mint:  #0d47a1;
+  --mint-dim: rgba(13, 71, 161, 0.6);
+  --blue: #4da6ff;
+  --gold: #ffd166;
+  --bg: #03050a;
+  --text: #e8f0f8;
+  --white: white;
 }
-   </script>
-    <style>
-        :root {
-            --primary-blue:#0d47a1;
-            --secondary-blue:#1565c0;
-            --light-blue-bg:#e3f2fd;
-            --text-dark:#212529;
-            --text-light:#5f6368;
-            --background-light:#ffffff;
-            --border-color:#dee2e6;
-            --accent-orange: #ff6d00;
-        }
 
-        * { margin:0; padding:0; box-sizing:border-box; scroll-behavior: smooth; }
-        body {
-            font-family:'Hind Siliguri',Inter, sans-serif;
-            background:#fff;
-            color:var(--text-dark);
-            line-height:1.7;
-        }
+html, body {
+  width: 100%; height: 100%;
+  overflow: hidden;
+  background: var(--bg);
+  font-family: 'Outfit', sans-serif;
+  color: var(--text);
+  cursor: default;
+}
 
-        .container { max-width:95vw; margin:auto; padding: 0 20px; width:95vw;}
-        .section { padding:80px 0; }
-        .text-center { text-align: center; margin-bottom: 50px; }
-        .section-title { font-size: 32px; color: var(--primary-blue); margin-bottom: 10px; }
-        .logo_img{
-             height:40px;
-        }
-        /* Navbar */
-        .navbar-wrapper {
-            border-bottom: 1px solid var(--border-color);
-            position: sticky;
-            top: 0;
-            backdrop-filter: blur(80px) saturate(300%);
-            -webkit-backdrop-filter: blur(20px) saturate(180%);
-            
-            /* Increased alpha from 0.12 to 0.65 */
-            background: rgba(255, 255, 255, 0.70); 
-            z-index: 1000;
-        }
-        .navbar {
-            display:flex;
-            justify-content:space-between;
-            align-items:center;
-            padding:15px 0;
-        }
+#cur, #cur-ring {
+  display: none;
+}
 
-        .nav-menu { display:flex; gap:30px; list-style:none; }
-        .nav-menu a { text-decoration:none; font-weight:600; color:var(--text-dark); transition: 0.3s; }
-        .nav-menu a:hover { color: var(--primary-blue); }
+canvas { position: fixed; inset: 0; z-index: 0; }
 
-        .btn-gradient {
-            padding:10px 22px;
-            background:linear-gradient(90deg, var(--secondary-blue), var(--primary-blue));
-            color:#fff;
-            border-radius:8px;
-            text-decoration:none;
-            font-weight:600;
-            box-shadow: 0 4px 15px rgba(13, 71, 161, 0.3);
-        }
-        
-        .lang-switch{
-            background: #0d47a1;
-            justify-content:center;
-            text-align:center;
+/* ─── CURSOR ─── */
+#cur { position: fixed; z-index: 9999; pointer-events: none; mix-blend-mode: exclusion; }
+#cur-dot { width:8px; height:8px; border-radius:50%; background:#fff; transform:translate(-50%,-50%); }
+#cur-ring {
+  position: fixed; z-index: 9998; pointer-events: none;
+  width:40px; height:40px; border-radius:50%;
+  border:1px solid rgba(0,255,163,0.5);
+  transform:translate(-50%,-50%);
+  transition: width .3s, height .3s, border-color .3s;
+}
 
-        }
-        .lang-switch span {
+/* ─── NOISE OVERLAY ─── */
+#noise {
+  position: fixed; inset: 0; z-index: 1; pointer-events: none; opacity: 0.03;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  background-size: 160px;
+}
 
-            margin: 0 6px;
-            color: #ccc;
-        }
-        /* ============================= */
-        /* Language Switch Button Style  */
-        /* ============================= */
-        
-        .btn-lang {
-            display: inline-block;
-            padding: 6px 14px;
-            margin: 0 4px;
-            font-size: 14px;
-            font-weight: 600;
-            text-decoration: none;
-            color: white;
-            border: 1.5px solid #0d47a1;
-            border-radius: 8px;
-            transition: all 0.25s ease;
-            background: transparent;
-        }
-        
-        /* Hover effect */
-        .btn-lang:hover {
-            color: #ffffff;
+/* ─── VIGNETTE ─── */
+#vignette {
+  position: fixed; inset: 0; z-index: 2; pointer-events: none;
+  background: radial-gradient(ellipse 90% 80% at 50% 50%, transparent 50%, rgba(3,5,10,0.85) 100%);
+}
 
-        }
+/* ─── GRID FLOOR ─── */
+#grid-floor {
+  position: fixed; bottom: -8%; left: -20%; right: -20%; height: 45%;
+  z-index: 1; pointer-events: none; opacity: 0;
+  background-image:
+    linear-gradient(rgba(0,255,163,0.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(0,255,163,0.07) 1px, transparent 1px);
+  background-size: 80px 80px;
+  transform: perspective(800px) rotateX(72deg);
+  transform-origin: bottom center;
+  mask-image: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 75%);
+  -webkit-mask-image: linear-gradient(to top, rgba(0,0,0,0.6) 0%, transparent 75%);
+  transition: opacity 1.5s ease 1s;
+}
 
-        
-        /* Hero Section with BG Image */
-        .hero { 
-            position: relative;
-            width: 100vw;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw;
-            margin-right: -50vw;
-            min-height: 85vh;
-            display: flex;
-            align-items: center;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.7)), 
-                        url('https://paicobd.com/index_img/kawran_bazar_kitchen_market_4.webp');
-            background-size: cover;
-            background-position: center;
-            background-attachment: fixed; /* Parallax effect */
-            color: white;
-            padding: 60px 0;
-        }
+/* ─── LOGO ─── */
+#logo {
+  position: fixed; top: 36px; left: 48px; z-index: 20;
+  display: flex; align-items: center; gap: 12px;
+  opacity: 0; transform: translateY(-10px);
+  transition: all 0.8s ease 0.2s;
+}
+#logo-mark {
+  width: 38px; height: 38px; border-radius: 10px;
+  background: linear-gradient(135deg, var(--mint), var(--blue));
+  display: flex; align-items: center; justify-content: center;
+  box-shadow: 0 0 20px rgba(13, 71, 161, 0.6);
+}
+#logo-mark svg { width: 20px; height: 20px; }
+#logo-name {
+  font-family: 'Inter', sans-serif;
+  font-size: 22px; letter-spacing: 0.18em;
+  color: var(--text);
+}
+#logo-tag {
+  font-size: 10px; color: rgba(232,240,248,0.4);
+  letter-spacing: 0.18em; text-transform: uppercase;
+  margin-top: 1px;
+}
 
-        .hero-content { flex:1; }
-        .hero-content h1 { font-size:48px; line-height: 1.2; margin-bottom:20px; text-shadow: 2px 2px 10px rgba(0,0,0,0.5); }
-        .hero-content span { color: #white; } /* Lighter blue for better contrast on dark bg */
-        .hero-content p { font-size:22px; color: #e0e0e0; margin-bottom:30px; max-width: 700px; }
+/* ─── TOP RIGHT NAV ─── */
+#nav {
+  position: fixed; top: 42px; right: 48px; z-index: 20;
+  display: flex; gap: 32px; align-items: center;
+  opacity: 0; transition: opacity 0.8s ease 0.4s;
+}
+.nav-link {
+  font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase;
+  color: rgba(232,240,248,0.45); cursor: pointer;
+  transition: color 0.2s;
+}
 
-        .hero-buttons { display:flex; gap:15px; flex-wrap:wrap; }
-        .btn { padding:14px 30px; border-radius:8px; font-weight:600; text-decoration:none; transition: 0.3s; }
-        .btn-primary { background:linear-gradient(90deg, var(--secondary-blue), var(--primary-blue)); color:#fff; border: none; }
-        .btn-primary:hover { transform: translateY(-3px); box-shadow: 0 5px 15px rgba(0,0,0,0.4); }
-        .btn-secondary { border:2px solid #fff; color: #fff; background: rgba(255,255,255,0.1); }
-        .btn-secondary:hover { background: #fff; color: var(--primary-blue); }
+.nav-link a{
+    color: var(--white);
+    text-decoration:none;
+}
+.nav-link a:hover{
+    color:var(--white);
+    text-decoration:none;
+}
+.nav-link:hover { color: var(--mint); }
 
-        .trust-strip { display:flex; gap:15px; flex-wrap:wrap; margin-top:30px; font-size:16px; color: white; }
-        .trust-strip i { color: #4caf50; }
-        
-        .photo-credit {
-            position: absolute; /* Detaches it from the flow */
-            bottom: 15px;       /* Distance from bottom */
-            right: 15px;        /* Distance from right */
-            
-            /* Styling for readability */
-            color: white;
-            font-size: 12px;
-            background: rgba(0, 0, 0, 0.4); /* Dark semi-transparent background */
-            padding: 4px 8px;
-            border-radius: 8px;
-        }
-        
-        .photo-credit a {
-            color: white;            /* Forces the link to be white */
-            text-decoration: none;   /* Removes the underline */
-        }
+/* ─── PHASE 1: CHAOS ─── */
+#phase-chaos {
+  position: fixed; inset: 0; z-index: 10;
+  display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  pointer-events: none;
+}
 
-        /* Stats Section */
-        .stats-bar { background: var(--primary-blue); color: #fff; padding: 40px 0; text-align: center; }
-        .stats-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 20px; }
-        .stat-item h2 { font-size: 36px; margin-bottom: 5px; }
+#chaos-eyebrow {
+  font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+  color: rgba(255,209,102,0.7);
+  opacity: 0; transform: translateY(12px);
+  margin-bottom: 20px;
+}
 
-        /* Categories */
-        .category-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(150px, 1fr)); gap: 20px; }
-        .category-card { 
-            background: var(--light-blue-bg); 
-            padding: 20px; 
-            border-radius: 8px; 
-            text-align: center; 
-            transition: 0.3s;
-            cursor: pointer;
-        }
-        .category-card:hover { background: var(--primary-blue); color: #fff; transform: scale(1.05); }
-        .category-card i { font-size: 30px; margin-bottom: 10px; }
+#chaos-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(72px, 12vw, 160px);
+  line-height: 0.9;
+  letter-spacing: -0.01em;
+  text-align: center;
+  opacity: 0;
+  background: linear-gradient(135deg, #e8f0f8 30%, rgba(232,240,248,0.4) 100%);
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
 
-        /* Features */
-        .features { background:#f8f9fa; }
-        .features-grid { display:grid; grid-template-columns:repeat(auto-fit, minmax(280px, 1fr)); gap:25px; }
-        .feature-card { background:#fff; padding:40px 30px; border-radius:8px; text-align:center; transition: 0.3s; border: 1px solid #eee; }
-        .feature-card:hover { box-shadow: 0 10px 30px rgba(0,0,0,0.08); }
-        .feature-card i { font-size:40px; color:var(--primary-blue); margin-bottom:20px; }
+#chaos-sub {
+  margin-top: 28px;
+  font-size: 16px; font-weight: 300;
+  color: rgba(232,240,248,0.45);
+  letter-spacing: 0.04em;
+  text-align: center; max-width: 440px;
+  line-height: 1.7;
+  opacity: 0; transform: translateY(8px);
+}
 
-        /* Testimonials/FAQ and Footer styles kept same */
-        .testimonial-card { background: #fff; padding: 30px; border-radius: 8pxpx; border-left: 5px solid var(--primary-blue); margin-bottom: 20px; box-shadow: 0 5px 15px rgba(0,0,0,0.05); }
-        .user-info { display: flex; align-items: center; gap: 15px; margin-top: 15px; }
-        .user-info img { width: 50px; height: 50px; border-radius: 8px; background: #ddd; }
-        .faq-item { background: #fff; margin-bottom: 15px; border: 1px solid var(--border-color); border-radius: 8px; overflow: hidden; }
-        .faq-question { padding: 15px 20px; cursor: pointer; display: flex; justify-content: space-between; font-weight: 600; }
-        .faq-answer { padding: 0 20px 15px; color: var(--text-light); display: none; }
-        footer { background: #1a1a1a; color: #fff; padding: 60px 0 20px; }
-        .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 40px; margin-bottom: 40px; }
-        .footer-col h4 { margin-bottom: 20px; color: var(--light-blue-bg); }
-        .footer-col ul { list-style: none; }
-        .footer-col ul li { margin-bottom: 10px; }
-        .footer-col ul li a { color: #ccc; text-decoration: none; }
-        .footer-bottom { border-top: 1px solid #333; padding-top: 20px; text-align: center; font-size: 14px; color: #777; }
+#chaos-stats {
+  display: flex; gap: 48px; margin-top: 52px;
+  opacity: 0; transform: translateY(8px);
+}
+.stat-item { text-align: center; }
+.stat-val {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 36px; color: var(--white);
+  letter-spacing: 0.02em;
+}
+.stat-label {
+  font-size: 10px; letter-spacing: 0.16em; text-transform: uppercase;
+  color: var(--white); margin-top: 4px;
+}
+.stat-divider { width: 1px; background: rgba(232,240,248,0.1); }
 
-        /* Floats */
-        .whatsapp-float, .call-float {
-            position:fixed; right:20px; width:55px; height:55px; border-radius:50%;
-            display:flex; align-items:center; justify-content:center; color:#fff;
-            font-size:24px; z-index:999; box-shadow:0 5px 15px rgba(0,0,0,0.2); transition: 0.3s;
-        }
-        .call-float { bottom:90px; background:var(--primary-blue); text-decoration:none; }
+#activate-btn {
+  margin-top: 52px;
+  padding: 16px 52px;
+  border-radius: 4px;
+  border: 1px solid rgba(0,255,163,0.35);
+  background: var(--mint);
+  color: white ;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px; font-weight: 600;
+  letter-spacing: 0.22em; text-transform: uppercase;
+  cursor: pointer; pointer-events: auto;
+  opacity: 0; transform: translateY(8px);
+  transition: background 0.3s, border-color 0.3s, box-shadow 0.3s;
+  position: relative; overflow: hidden;
+}
+#activate-btn::before {
+  content: '';
+  position: absolute; inset: 0;
+  background: linear-gradient(90deg, transparent,  #0d47a1, transparent);
+  transform: translateX(-100%);
+  transition: transform 0.6s;
+}
+#activate-btn:hover::before { transform: translateX(100%); }
+#activate-btn:hover {
+  background: rgba(13, 71, 161, 0.12);
+  border-color:  #0d47a1;
+  box-shadow: 0 0 30px rgba(13, 71, 161, 0.6), inset 0 0 20px rgba(13, 71, 161, 0.6);
+}
 
-        .mobile-cta { display:none; }
+/* ─── PHASE 2: ORDER ─── */
+#phase-order {
+  position: fixed; inset: 0; z-index: 11;
+  display: flex; align-items: center;
+  padding: 0 10vw;
+  pointer-events: none; opacity: 0;
+}
 
-        /* Responsive */
-        @media(max-width:768px){
-            .logo_img{
-                height:30px;
-            }
-            .nav-menu { display: none; }
-            .hero { text-align:center; min-height: 70vh; background-attachment: scroll; }
-            .hero-content h1 { font-size:32px; }
-            .hero-content p { font-size: 18px; }
-            .hero-buttons { justify-content: center; }
-            .hero-buttons .btn { width:100%; }
-            .trust-strip { justify-content: center; }
-            .mobile-cta {
-                position:fixed; bottom:0; left:0; width:100%; display:flex; z-index: 1001; text-decoration:none;
-            }
-            .mobile-cta i {text-decoration:none;}
-            .mobile-cta a { flex:1; text-align:center; padding:16px 0; color:#fff; font-weight:600; text-decoration:none; }
-            .mobile-cta a:first-child { background:var(--primary-blue); }
-            .mobile-cta a:last-child { background:#25D366; }
-            body { padding-bottom: 60px; }
-        }
-    </style>
-<meta name="google-site-verification" content="VFuOAWsb7EywcwVrKB5LMycYqBBBJe4u26r3zZiKSbY" />
-<meta name="msvalidate.01" content="00E8162811B2D2E7D1E9390EE5049CE2" />
+#order-left { flex: 0 0 auto; max-width: 460px; }
+
+#order-eyebrow {
+  font-size: 11px; letter-spacing: 0.32em; text-transform: uppercase;
+  color: var(--white); margin-bottom: 16px;
+  display: flex; align-items: center; gap: 12px;
+}
+#order-eyebrow::after {
+  content: '';
+  display: block;
+  background: white; opacity: 0.5;
+}
+
+#order-title {
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: clamp(52px, 7vw, 96px);
+  line-height: 0.92; letter-spacing: 0.01em;
+  color: var(--text);
+}
+#order-title .accent { color: var(--mint); }
+
+#order-desc {
+  margin-top: 24px;
+  font-size: 15px; font-weight: 300;
+  color: rgba(232,240,248,0.55);
+  line-height: 1.75; max-width: 380px;
+}
+
+#order-features {
+  margin-top: 36px;
+  display: flex; flex-direction: column; gap: 14px;
+}
+.feature-row {
+  display: flex; align-items: center; gap: 14px;
+  opacity: 0; transform: translateX(-16px);
+}
+.feature-icon {
+  width: 34px; height: 34px;
+  border-radius: 9px;
+  background: rgba(0,255,163,0.08);
+  border: 1px solid rgba(0,255,163,0.15);
+  display: flex; align-items: center; justify-content: center;
+  font-size: 14px; flex-shrink: 0;
+}
+.feature-text { font-size: 13px; color: rgba(232,240,248,0.65); letter-spacing: 0.02em; }
+.feature-text strong { color: var(--text); font-weight: 500; }
+
+#order-cta {
+  margin-top: 44px;
+  display: flex; gap: 16px; align-items: center;
+  opacity: 0;
+}
+#cta-primary {
+  padding: 14px 36px; border-radius: 4px;
+  background: var(--mint); color: white;
+  font-family: 'Outfit', sans-serif;
+  font-size: 12px; font-weight: 700;
+  letter-spacing: 0.18em; text-transform: uppercase;
+  cursor: pointer; pointer-events: auto;
+  transition: all 0.3s;
+  box-shadow: 0 8px 32px rgba(13, 71, 161, 0.6);
+  text-decoration:none;
+}
+#cta-primary a {  text-decoration:none;}
+#cta-primary a {  text-decoration:none; color:white;}
+#cta-primary:hover {  text-decoration:none; transform: translateY(-2px); box-shadow: 0 12px 40px rgba(13, 71, 161, 0.6)); }
+#cta-secondary {
+  font-size: 12px; letter-spacing: 0.14em;
+  text-transform: uppercase; color: rgba(232,240,248,0.4);
+  cursor: pointer; pointer-events: auto;
+  transition: color 0.2s; border-bottom: 1px solid transparent;
+}
+#cta-secondary:hover { color: var(--text); border-color: rgba(232,240,248,0.3); }
+
+/* ─── DASHBOARD PREVIEW (right side) ─── */
+#dashboard-preview {
+  flex: 1; margin-left: 60px;
+  position: relative; height: 520px;
+  opacity: 0;
+}
+
+.dp-card {
+  position: absolute;
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.07);
+  border-radius: 14px;
+  backdrop-filter: blur(20px);
+  padding: 18px 20px;
+  box-shadow: 0 20px 60px rgba(13, 71, 161, 0.6);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+.dp-card:hover {
+  transform: translateY(-4px) !important;
+  box-shadow: 0 28px 70px rgba(13, 71, 161, 0.6), 0 0 0 1px rgba(13, 71, 161, 0.1);
+}
+.dp-card::after {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(255,255,255,0.12), transparent);
+  border-radius: 14px 14px 0 0;
+}
+
+#card-main { top: 0; left: 0; right: 0; }
+.card-header { display: flex; align-items: center; justify-content: space-between; margin-bottom: 16px; }
+.card-title { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: rgba(232,240,248,0.4); }
+.card-live { display: flex; align-items: center; gap: 6px; font-size: 10px; color: var(--mint); }
+.card-live-dot { width:6px;height:6px;border-radius:50%;background:var(--mint);animation:blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.3} }
+
+.kpi-row { display: flex; gap: 20px; }
+.kpi { flex: 1; }
+.kpi-num {
+  color: var(--white);
+  font-family: 'Bebas Neue', sans-serif;
+  font-size: 34px; line-height: 1;
+  background: linear-gradient(135deg, var(--mint), var(--blue));
+  -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+}
+.kpi-lbl { font-size: 10px; color: var(--white); letter-spacing: 0.1em; text-transform: uppercase; margin-top: 4px; }
+.kpi-delta { font-size: 11px; color: var(--white); margin-top: 6px; }
+
+.mini-chart { display: flex; gap: 4px; align-items: flex-end; height: 36px; margin-top: 16px; }
+.bar { flex: 1; border-radius: 3px 3px 0 0; background: rgba(0,255,163,0.15); transition: height 1s ease; }
+.bar.hi { background: linear-gradient(to top, var(--mint), rgba(0,255,163,0.5)); }
+
+#card-supply { top: 140px; right: -10px; width: 220px; }
+#card-supply .sup-row { display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.05); }
+#card-supply .sup-row:last-child { border-bottom: none; }
+.sup-dot { width:8px;height:8px;border-radius:50%;flex-shrink:0; }
+.sup-name { font-size: 12px; color: var(--text); flex: 1; }
+.sup-pct { font-size: 11px; color: var(--mint); font-weight: 500; }
+
+#card-orders { bottom: 10px; left: 20px; width: 280px; }
+.order-item { display:flex;align-items:center;gap:10px;padding:8px 0;border-bottom:1px solid rgba(255,255,255,0.04); }
+.order-item:last-child { border-bottom: none; }
+.order-ico { width:28px;height:28px;border-radius:7px;display:flex;align-items:center;justify-content:center;font-size:12px;flex-shrink:0; }
+.order-info { flex:1;min-width:0; }
+.order-name { font-size:12px;color:var(--text);white-space:nowrap;overflow:hidden;text-overflow:ellipsis; }
+.order-dest { font-size:10px;color:rgba(232,240,248,0.35);margin-top:2px; }
+.order-price { font-size:12px;color:var(--white);font-weight:500; }
+
+#card-score { bottom: 0; right: 0; width: 160px; text-align: center; padding: 20px; }
+.score-ring { width:80px;height:80px;margin:0 auto 12px; position:relative; }
+.score-ring svg { transform: rotate(-90deg); }
+.score-ring-val {
+  position:absolute; inset:0; display:flex; align-items:center; justify-content:center;
+  font-family:'Bebas Neue',sans-serif; font-size:26px; color:var(--mint);
+}
+.score-label { font-size:10px;letter-spacing:0.12em;text-transform:uppercase;color:rgba(232,240,248,0.35); }
+
+/* ─── TRANSITION FLASH ─── */
+#flash { position:fixed;inset:0;z-index:50;background: #0d47a1;opacity:0;pointer-events:none; }
+
+/* ─── SCANLINES ─── */
+#scan {
+  position:fixed;inset:0;z-index:3;pointer-events:none;opacity:0.025;
+  background:repeating-linear-gradient(0deg,transparent,transparent 2px,rgba(0,0,0,1) 2px,rgba(0,0,0,1) 4px);
+}
+
+/* ─── BOTTOM BAR ─── */
+#bottom-bar {
+  position:fixed;bottom:32px;left:48px;right:48px;z-index:20;
+  display:flex;align-items:center;justify-content:space-between;
+  opacity:0;transition:opacity 0.8s ease 0.6s;
+}
+#scroll-hint { font-size:10px;letter-spacing:0.2em;text-transform:uppercase;color:rgba(232,240,248,0.2); }
+#progress-line { width:120px;height:1px;background:rgba(232,240,248,0.08);position:relative;overflow:hidden; }
+#progress-fill { position:absolute;inset:0;background:var(--mint);transform:translateX(-100%);animation:scan-line 3s ease-in-out infinite; }
+@keyframes scan-line { 0%{transform:translateX(-100%)} 100%{transform:translateX(100%)} }
+#version-tag { font-size:10px;letter-spacing:0.14em;color:rgba(232,240,248,0.18); }
+
+/* ─── MOBILE RESPONSIVE ─── */
+
+/* Tablet: 768px and below */
+@media (max-width: 768px) {
+
+  /* Logo & Nav */
+  #logo {
+    top: 20px; left: 20px;
+  }
+  #nav {
+    top: 20px; right: 20px;
+    gap: 16px;
+  }
+  .nav-link {
+    font-size: 10px;
+    letter-spacing: 0.08em;
+  }
+  .nav-link[style*="background"] {
+    padding: 6px 12px !important;
+  }
+
+  /* Bottom bar */
+  #bottom-bar {
+    left: 20px; right: 20px; bottom: 20px;
+  }
+
+  /* Phase 1: Chaos */
+  #chaos-eyebrow {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+  }
+  #chaos-title {
+    font-size: clamp(52px, 14vw, 90px);
+  }
+  #chaos-sub {
+    font-size: 14px;
+    padding: 0 20px;
+  }
+  #chaos-stats {
+    gap: 24px;
+    margin-top: 36px;
+  }
+  .stat-val {
+    font-size: 28px;
+  }
+  .stat-label {
+    font-size: 9px;
+  }
+  #activate-btn {
+    margin-top: 36px;
+    padding: 14px 36px;
+    font-size: 11px;
+  }
+
+  /* Phase 2: Order — stack vertically */
+  #phase-order {
+    flex-direction: column;
+    padding: 80px 20px 100px;
+    align-items: flex-start;
+    overflow-y: auto;
+    overflow-x: hidden;
+  }
+  #order-left {
+    max-width: 100%;
+    width: 100%;
+  }
+  #order-title {
+    font-size: clamp(44px, 10vw, 72px);
+  }
+  #order-desc {
+    font-size: 14px;
+    max-width: 100%;
+  }
+  #order-features {
+    margin-top: 24px;
+    gap: 10px;
+  }
+  .feature-text {
+    font-size: 12px;
+  }
+  #order-cta {
+    margin-top: 32px;
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+
+  /* Dashboard Preview — below the left content */
+  #dashboard-preview {
+    margin-left: 0;
+    margin-top: 40px;
+    width: 100%;
+    height: auto;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+  }
+
+  /* Reset all absolute positioned cards to static flow */
+  .dp-card {
+    position: static !important;
+    width: 100% !important;
+    transform: none !important;
+  }
+
+  /* Score ring card: center it */
+  #card-score {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 20px;
+    text-align: left;
+  }
+  #card-score .score-ring {
+    margin: 0;
+    flex-shrink: 0;
+  }
+
+  .kpi-num { font-size: 26px; }
+  .kpi-lbl { font-size: 9px; }
+  .kpi-delta { font-size: 10px; }
+}
+
+/* Small Mobile: 480px and below */
+@media (max-width: 480px) {
+
+  /* Hide some nav links to prevent overflow */
+  #nav .nav-link:nth-child(1),
+  #nav .nav-link:nth-child(3) {
+    display: none;
+  }
+  #nav {
+    gap: 10px;
+  }
+
+  #chaos-title {
+    font-size: clamp(42px, 13vw, 70px);
+  }
+  #chaos-stats {
+    flex-direction: column;
+    align-items: center;
+    gap: 16px;
+  }
+  .stat-divider {
+    width: 40px;
+    height: 1px;
+  }
+
+  #order-title {
+    font-size: clamp(38px, 12vw, 58px);
+  }
+
+  .kpi-row {
+    flex-wrap: wrap;
+    gap: 12px;
+  }
+  .kpi {
+    flex: 0 0 calc(50% - 6px);
+  }
+
+  #card-score {
+    flex-direction: column;
+    text-align: center;
+  }
+  #card-score .score-ring {
+    margin: 0 auto;
+  }
+
+  #cta-primary {
+    width: 100%;
+    text-align: center;
+    padding: 14px 20px;
+  }
+}
+
+/* Landscape mobile fix */
+@media (max-width: 768px) and (orientation: landscape) {
+  #phase-chaos {
+    justify-content: flex-start;
+    padding-top: 70px;
+    overflow-y: auto;
+  }
+  #chaos-title {
+    font-size: clamp(36px, 8vw, 64px);
+  }
+  #chaos-sub {
+    display: none;
+  }
+  #chaos-stats {
+    margin-top: 20px;
+  }
+  #activate-btn {
+    margin-top: 20px;
+  }
+}
+
+</style>
 </head>
-
 <body>
-<div class="lang-switch">
-    <a href="/bn" class="btn-lang">বাংলা</a>
-        <span>|</span>
-    <a href="https://paicobd.com" class="btn-lang">English</a>
-</div>
-                 
-<div class="navbar-wrapper">
-    <header class="container navbar">
-        <img src="https://marketplace.paicobd.com/assets/logo/truck_main_paicoblue.svg" alt="Paico" class="logo_img">
-        <ul class="nav-menu">
-            <li><a href="market/about.php">About Us</a></li>
-            <li><a href="https://marketplace.paicobd.com/categories/">Categories</a></li>
-            <li><a href="#how-it-works">How to Buy</a></li>
-            <li><a href="/international/">International Trade</a></li>
-            <li><a href="onboard.html">Partner with us</a></li>
-            <li><a href="#faq">FAQ</a></li>
-        </ul>
-    <a href="https://marketplace.paicobd.com/" class="btn-gradient">Marketplace</a>
-    </header>
+
+<div id="flash"></div>
+<div id="noise"></div>
+<div id="scan"></div>
+<div id="vignette"></div>
+<div id="grid-floor"></div>
+
+<div id="cur"><div id="cur-dot"></div></div>
+<div id="cur-ring"></div>
+
+<!-- Logo -->
+<div class="navsection">
+<div id="logo">
+  <div>
+        <a href="https://paicobd.com"><img src="https://marketplace.paicobd.com/assets/logo/truck_main_white.svg" height="35"></a>
+  </div>
 </div>
 
-<section class="hero">
-    <div class="container">
-        <div class="hero-content">
-            <h1>From Chawkbazar to Khatunganj — <span>All Wholesale Products Now on Your Phone!</span></h1>
-            <p>Buy directly from importers and factories. No middlemen, so your profit will be doubled.</p>
-
-            <div class="hero-buttons">
-                <a href="https://marketplace.paicobd.com/about.php" class="btn btn-primary">Learn More<i class="fas fa-arrow-right"></i></a>
-                <a href="https://supplier.paicobd.com/" class="btn btn-secondary" style="backdrop-filter: blur(20px) saturate(180%);
-    -webkit-backdrop-filter: blur(20px) saturate(180%);
-    background: rgba(13, 71, 161, 0.12);">Join as a Seller</a>
-            </div>
-
-            <div class="trust-strip">
-                <span><i class="fas fa-check-circle"></i> Cash on Delivery</span>
-                <span><i class="fas fa-users"></i> 50,000+ Successful Merchants</span>
-                <span><i class="fas fa-truck"></i> Delivery in 64 Districts</span>
-            </div>
-            </div>
-            
-            
-                <div class="photo-credit">
-                    <span><i>Photo Source: <u> <a href="https://www.tbsnews.net/gallery/bangladesh/kawran-bazar-dawn-429486" target="blank"> The Business Standard </a> </u> </i></span>
-                </div>
-            
+<!-- Nav -->
+<div id="nav">
+  <div class="nav-link"><a href="../index.php" target="blank">Platform</a></div>
+  <div class="nav-link"><a href="https://supplier.paicobd.com/" target="blank">Suppliers</a></div>
+  <div class="nav-link"><a href="/international/">International</a></div>
+  <div class="nav-link" style="color:var(--white);background: #0d47a1;padding:8px 20px;border-radius:4px;"><a href="https://marketplace.paicobd.com/"  target="blank">Marketplace</a></div>
+</div>
+</div>
+<!-- Phase 1: Chaos -->
+<div id="phase-chaos">
+  <div id="chaos-eyebrow">The problem is real</div>
+  <div id="chaos-title">Product<br>Sourcing Can be<br>Chaotic</div>
+  <div id="chaos-sub">Suppliers disconnected. Orders lost. Logistics everywhere.<br>Every system fighting every other system.</div>
+  <div id="chaos-stats">
+    <div class="stat-item">
+      <div class="stat-val" id="stat1">0</div>
+      <div class="stat-label">Avg. Supplier Gaps</div>
     </div>
-</section>
-
-
-<div class="stats-bar">
-    <div class="container stats-grid">
-        <div class="stat-item">
-            <h2>500+</h2>
-            <p>Verified Suppliers</p>
-        </div>
-        <div class="stat-item">
-            <h2>1 Lakh+</h2>
-            <p>Monthly Orders</p>
-        </div>
-        <div class="stat-item">
-            <h2>10 Crore+</h2>
-            <p>Money Saved</p>
-        </div>
-        <div class="stat-item">
-            <h2>24/7</h2>
-            <p>Customer Support</p>
-        </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-val" id="stat2">0%</div>
+      <div class="stat-label">Order Visibility</div>
     </div>
+    <div class="stat-divider"></div>
+    <div class="stat-item">
+      <div class="stat-val" id="stat3">0h</div>
+      <div class="stat-label">Wasted Weekly</div>
+    </div>
+  </div>
+  <button id="activate-btn" onclick="activatePaico()">
+    Move to Paico
+  </button>
 </div>
 
-
-<section id="categories" class="section container">
-    <div class="text-center">
-        <h2 class="section-title">Popular Categories</h2>
-        <p>Choose the right product for your business</p>
+<!-- Phase 2: Order -->
+<div id="phase-order">
+  <div id="order-left">
+    <div id="order-eyebrow">Paico makes</div>
+    <div id="order-title">Souricng<br><span class="accent">Organized</span></div>
+    <div id="order-desc">
+      One intelligent layer that connects your global supply chain, automates order routing, and gives you real-time visibility across every touchpoint.
     </div>
-    <div class="category-grid">
-        <div class="category-card">
-            <i class="fas fa-tshirt"></i>
-            <h3>Clothing & Garments</h3>
-        </div>
-        <div class="category-card">
-            <i class="fas fa-mobile-alt"></i>
-            <h3>Electronics</h3>
-        </div>
-        <div class="category-card">
-            <i class="fas fa-utensils"></i>
-            <h3>Groceries</h3>
-        </div>
-        <div class="category-card">
-            <i class="fas fa-spa"></i>
-            <h3>Cosmetics</h3>
-        </div>
-        <div class="category-card">
-            <i class="fas fa-blender"></i>
-            <h3>Home Appliances</h3>
-        </div>
-        <div class="category-card">
-            <i class="fas fa-shoe-prints"></i>
-            <h3>Shoes & Sandals</h3>
-        </div>
+    <div id="order-features">
+      <div class="feature-row">
+        <div class="feature-icon">📡</div>
+        <div class="feature-text"><strong>Live supplier sync</strong> — all vendors in one pane</div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">⚡</div>
+        <div class="feature-text"><strong>Automated routing</strong> — zero manual dispatch</div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🔮</div>
+        <div class="feature-text"><strong>Predictive inventory</strong> — before stockouts hit</div>
+      </div>
+      <div class="feature-row">
+        <div class="feature-icon">🌐</div>
+        <div class="feature-text"><strong>Global logistics</strong> — 140+ countries, unified</div>
+      </div>
     </div>
-</section>
-
-<section class="section features">
-    <div class="container">
-        <div class="text-center">
-            <h2 class="section-title">Why Use Paico?</h2>
-        </div>
-        <div class="features-grid">
-            <div class="feature-card">
-                <i class="fas fa-hand-holding-usd"></i>
-                <h3>Incredibly Low Prices</h3>
-                <p>Products come directly from the source, so you get the real wholesale price.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-shield-alt"></i>
-                <h3>Secure Payment</h3>
-                <p>Facility to pay after receiving the product. No hidden charges.</p>
-            </div>
-            <div class="feature-card">
-                <i class="fas fa-truck-fast"></i>
-                <h3>Fast Delivery</h3>
-                <p>Goods will reach your address within 48-72 hours after order confirmation.</p>
-            </div>
-        </div>
+    <div id="order-cta">
+      <button id="cta-primary"><a href="https://marketplace.paicobd.com/"  target="blank">Visit Marketplace</a></button>
+      <div id="cta-secondary">Call us</div>
     </div>
-</section>
+  </div>
 
-<section style="background:#f8f9fa; padding:80px 0;">
-    <div class="container">
-        <div class="text-center">
-            <h2 class="section-title">Reality vs Paico</h2>
-            <p>What we don't do… and what we do!</p>
+  <div id="dashboard-preview">
+    <!-- Main KPI Card -->
+    <div class="dp-card" id="card-main">
+      <div class="card-header">
+        <span class="card-title">Operations Overview</span>
+        <div class="card-live"><div class="card-live-dot"></div> Live</div>
+      </div>
+      <div class="kpi-row">
+        <div class="kpi">
+          <div class="kpi-num">৳2.4M</div>
+          <div class="kpi-lbl">Monthly GMV</div>
+          <div class="kpi-delta">↑ 12.4% MoM</div>
         </div>
-
-        <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(280px,1fr)); gap:30px;">
-
-            <div style="background:white; padding:30px; border-radius:8px; box-shadow:0 5px 20px rgba(0,0,0,0.05);">
-                <h3 style="color:#e53935;">❌ How it was before</h3>
-                <ul style="margin-top:15px; line-height:2;">
-                    <li>Asking prices from 5 middlemen</li>
-                    <li>Different prices in every shop</li>
-                    <li>Goods will come "Tomorrow" — but which tomorrow?</li>
-                    <li>When calling: “Brother, call back later”</li>
-                </ul>
-            </div>
-
-            <div style="background:#e3f2fd; padding:30px; border-radius:8px; box-shadow:0 5px 20px rgba(0,0,0,0.05);">
-                <h3 style="color:var(--primary-blue);">✅ How it is on Paico</h3>
-                <ul style="margin-top:15px; line-height:2;">
-                    <li>Wholesale rates in one click</li>
-                    <li>Transparent pricing — no drama</li>
-                    <li>Delivery within 48-72 hours</li>
-                    <li>Support team almost never sleeps</li>
-                </ul>
-            </div>
-
+        <div class="kpi">
+          <div class="kpi-num">98.6%</div>
+          <div class="kpi-lbl">Fulfillment</div>
+          <div class="kpi-delta">↑ 3.1% WoW</div>
         </div>
-
-        <div style="margin-top:50px; text-align:center;">
-            <h3 style="color:var(--primary-blue); margin-bottom:20px;">
-                Some Funny but True Facts 
-            </h3>
-
-            <div style="display:grid; grid-template-columns:repeat(auto-fit,minmax(220px,1fr)); gap:20px;">
-
-                <div style="background:white; padding:20px; border-radius:8px;">
-                     “Brother, tell me the last price” — we have removed this dialogue.
-                </div>
-
-                <div style="background:white; padding:20px; border-radius:8px;">
-                     We calculate with a calculator, not by guessing.
-                </div>
-
-                <div style="background:white; padding:20px; border-radius:8px;">
-                     If goods are lost, we don't say “no responsibility.”
-                </div>
-
-                <div style="background:white; padding:20px; border-radius:8px;">
-                     We profit only when you profit.
-                </div>
-
-            </div>
-
-            <div style="margin-top:40px;">
-                <h3 style="color:#ff6d00;">Paico — Less Drama, More Profit <h3>
-            </div>
+        <div class="kpi">
+          <div class="kpi-num">1.8d</div>
+          <div class="kpi-lbl">Avg Dispatch</div>
+          <div class="kpi-delta">↓ 0.4d faster</div>
         </div>
-    </div>
-</section>
-
-<section id="how-it-works" class="section container">
-    <div class="text-center">
-        <h2 class="section-title">How It Works?</h2>
-        <p>Start with just a few simple steps</p>
+      </div>
+      <div class="mini-chart" id="mini-chart">
+        <div class="bar" style="height:45%"></div>
+        <div class="bar" style="height:60%"></div>
+        <div class="bar" style="height:40%"></div>
+        <div class="bar hi" style="height:75%"></div>
+        <div class="bar" style="height:55%"></div>
+        <div class="bar" style="height:65%"></div>
+        <div class="bar hi" style="height:85%"></div>
+        <div class="bar" style="height:70%"></div>
+        <div class="bar hi" style="height:90%"></div>
+        <div class="bar" style="height:78%"></div>
+        <div class="bar hi" style="height:100%"></div>
+        <div class="bar" style="height:82%"></div>
+      </div>
     </div>
 
-    <div style="display:grid; grid-template-columns: repeat(auto-fit,minmax(300px,1fr)); gap:40px;">
-
-        <div style="background:#f8f9fa; padding:40px; border-radius:8px;">
-            <h3 style="color:var(--primary-blue); margin-bottom:25px;">
-                <i class="fas fa-shopping-cart"></i> How to Buy?
-            </h3>
-
-            <div style="margin-bottom:20px;">
-                <strong>1. Select Product</strong>
-                <p>Choose your required wholesale products from categories.</p>
-            </div>
-
-            <div style="margin-bottom:20px;">
-                <strong>2. Confirm Order</strong>
-                <p>Place order according to MOQ and provide delivery address.</p>
-            </div>
-
-            <div style="margin-bottom:20px;">
-                <strong>3. Receive Delivery</strong>
-                <p>Courier will deliver the product to your address within 48-72 hours.</p>
-            </div>
-
-            <div>
-                <strong>4. Complete Payment</strong>
-                <p>Pay the amount through Cash on Delivery or prescribed payment methods.</p>
-            </div>
-        </div>
-
-        <div style="background:#e3f2fd; padding:40px; border-radius:8px;">
-            <h3 style="color:var(--primary-blue); margin-bottom:25px;">
-                <i class="fas fa-store"></i> How to Sell?
-            </h3>
-
-            <div style="margin-bottom:20px;">
-                <strong>1. Seller Registration</strong>
-                <p>Open an account with your business information.</p>
-            </div>
-
-            <div style="margin-bottom:20px;">
-                <strong>2. Upload Products</strong>
-                <p>Add photos, price, and stock info from the dashboard.</p>
-            </div>
-
-            <div style="margin-bottom:20px;">
-                <strong>3. Receive Orders</strong>
-                <p>You will get notified when a customer orders and start processing.</p>
-            </div>
-
-            <div>
-                <strong>4. Receive Payment</strong>
-                <p>Payment will be made to your designated account once the order is completed.</p>
-            </div>
-        </div>
-
+    <!-- Supplier Card -->
+    <div class="dp-card" id="card-supply">
+      <div class="card-header">
+        <span class="card-title">Suppliers</span>
+        <span style="font-size:10px;color:rgba(232,240,248,0.3);">5 active</span>
+      </div>
+      <div class="sup-row"><div class="sup-dot" style="background:#00ffa3"></div><div class="sup-name">Axeon Materials</div><div class="sup-pct">94%</div></div>
+      <div class="sup-row"><div class="sup-dot" style="background:#4da6ff"></div><div class="sup-name">Nexfield Ltd</div><div class="sup-pct">87%</div></div>
+      <div class="sup-row"><div class="sup-dot" style="background:#a78bfa"></div><div class="sup-name">Viora Inc</div><div class="sup-pct">99%</div></div>
+      <div class="sup-row"><div class="sup-dot" style="background:#ffd166"></div><div class="sup-name">Clario Group</div><div class="sup-pct">72%</div></div>
     </div>
-</section>
 
-<section id="faq" class="section container">
-    <div class="text-center">
-        <h2 class="section-title">General Questions</h2>
+    <!-- Orders Card -->
+    <div class="dp-card" id="card-orders">
+      <div class="card-header">
+        <span class="card-title">Recent Orders</span>
+        <span style="font-size:10px;color:var(--mint);">+248 today</span>
+      </div>
+      <div class="order-item">
+        <div class="order-ico" style="background:rgba(0,255,163,0.1)">📦</div>
+        <div class="order-info"><div class="order-name">Wireless Headset Pro ×3</div><div class="order-dest">→ Seoul, KR</div></div>
+        <div class="order-price">৳412</div>
+      </div>
+      <div class="order-item">
+        <div class="order-ico" style="background:rgba(77,166,255,0.1)">🖥</div>
+        <div class="order-info"><div class="order-name">OLED Display 27" ×2</div><div class="order-dest">→ Tokyo, JP</div></div>
+        <div class="order-price">৳1,240</div>
+      </div>
+      <div class="order-item">
+        <div class="order-ico" style="background:rgba(167,139,250,0.1)">⚙️</div>
+        <div class="order-info"><div class="order-name">Sensor Array Kit ×10</div><div class="order-dest">→ Dubai, AE</div></div>
+        <div class="order-price">৳320</div>
+      </div>
     </div>
-    <div style="max-width: 800px; margin: auto;">
-        <div class="faq-item">
-            <div class="faq-question">What is the minimum order amount? <i class="fas fa-plus"></i></div>
-            <div class="faq-answer">Usually, to get the wholesale rate, each product has a specific 'Minimum Order Quantity' (MOQ), which is mentioned next to the product.</div>
-        </div>
-        <div class="faq-item">
-            <div class="faq-question">Do you deliver all over Bangladesh? <i class="fas fa-plus"></i></div>
-            <div class="faq-answer">Yes, we provide delivery to all Upazila levels of Bangladesh via courier.</div>
-        </div>
+
+    <!-- Score Ring Card -->
+    <div class="dp-card" id="card-score">
+      <div class="score-ring">
+        <svg viewBox="0 0 80 80" width="80" height="80">
+          <circle cx="40" cy="40" r="30" fill="none" stroke="rgba(0,255,163,0.08)" stroke-width="6"/>
+          <circle cx="40" cy="40" r="30" fill="none" stroke="url(#ringGrad)" stroke-width="6"
+            stroke-dasharray="188.5" stroke-dashoffset="28" stroke-linecap="round"/>
+          <defs>
+            <linearGradient id="ringGrad" x1="0%" y1="0%" x2="100%" y2="100%">
+              <stop offset="0%" stop-color="#00ffa3"/>
+              <stop offset="100%" stop-color="#4da6ff"/>
+            </linearGradient>
+          </defs>
+        </svg>
+        <div class="score-ring-val">85</div>
+      </div>
+      <div class="score-label">Chain Health</div>
     </div>
-</section>
-
-
-
-<footer>
-    <div class="container">
-        <div class="footer-grid">
-            <div class="footer-col">
-                <img src="https://marketplace.paicobd.com/assets/logo/truck_main_white.svg" alt="Paico" class="logo_img"> 
-                </br>
-                <p>Bangladesh's largest online wholesale marketplace. We create a bridge between retailers and manufacturers.</p>
-            </div>
-            <div class="footer-col">
-                <h4>Links</h4>
-                <ul>
-                    <li><a href="#">Our Story</a></li>
-                    <li><a href="#">Privacy Policy</a></li>
-                    <li><a href="#">Terms & Conditions</a></li>
-                </ul>
-            </div>
-            <div class="footer-col">
-                <h4>Contact</h4>
-                <p>House-24, Road-05, Banani, Dhaka.</p>
-                <p>Email: info@paicobd.com</p>
-            </div>
-        </div>
-        <div class="footer-bottom">
-            <p>&copy; 2026 Paico. All rights reserved.</p>
-        </div>
-    </div>
-</footer>
-
-
-<a href="tel:+8801700000000" class="call-float">
-    <i class="fas fa-phone"></i>
-</a>
-
-<div class="mobile-cta">
-    <a href="https://supplier.paicobd.com">Supplier Portal</a>
-    <a href="https://wa.me/8801700000000"><i class="fab fa-whatsapp"></i> WhatsApp Order</a>
+  </div>
 </div>
+
 
 <script>
-    document.querySelectorAll('.faq-question').forEach(question => {
-        question.addEventListener('click', () => {
-            const answer = question.nextElementSibling;
-            const icon = question.querySelector('i');
-            if (answer.style.display === "block") {
-                answer.style.display = "none";
-                icon.classList.replace('fa-minus', 'fa-plus');
-            } else {
-                answer.style.display = "block";
-                icon.classList.replace('fa-plus', 'fa-minus');
-            }
-        });
-    });
-</script>
+// ─── THREE.JS SETUP ───────────────────────────────────────────────
+const scene = new THREE.Scene();
+const camera = new THREE.PerspectiveCamera(65, innerWidth/innerHeight, 0.1, 1000);
+camera.position.z = 22;
 
+const renderer = new THREE.WebGLRenderer({ antialias: true, alpha: true });
+renderer.setSize(innerWidth, innerHeight);
+renderer.setPixelRatio(Math.min(devicePixelRatio, 2));
+document.body.prepend(renderer.domElement);
+
+// ─── PARTICLES ───────────────────────────────────────────────────
+const CHAOS_COUNT = 280;
+const positions = new Float32Array(CHAOS_COUNT * 3);
+const velocities = [];
+const colors = new Float32Array(CHAOS_COUNT * 3);
+const sizes = new Float32Array(CHAOS_COUNT);
+
+const palette = [
+  [0.0, 1.0, 0.64],  // mint
+  [0.3, 0.65, 1.0],  // blue
+  [0.65, 0.55, 0.98],// violet
+  [1.0, 0.82, 0.4],  // gold
+];
+
+for (let i = 0; i < CHAOS_COUNT; i++) {
+  const i3 = i * 3;
+  positions[i3]   = (Math.random() - 0.5) * 36;
+  positions[i3+1] = (Math.random() - 0.5) * 22;
+  positions[i3+2] = (Math.random() - 0.5) * 14;
+
+  velocities.push(
+    (Math.random() - 0.5) * 0.05,
+    (Math.random() - 0.5) * 0.05,
+    (Math.random() - 0.5) * 0.02
+  );
+
+  const col = palette[Math.floor(Math.random() * palette.length)];
+  colors[i3] = col[0]; colors[i3+1] = col[1]; colors[i3+2] = col[2];
+  sizes[i] = 0.5 + Math.random() * 2.5;
+}
+
+const geo = new THREE.BufferGeometry();
+geo.setAttribute('position', new THREE.BufferAttribute(positions, 3));
+geo.setAttribute('color', new THREE.BufferAttribute(colors, 3));
+geo.setAttribute('size', new THREE.BufferAttribute(sizes, 1));
+
+const mat = new THREE.ShaderMaterial({
+  vertexColors: true,
+  transparent: true,
+  depthWrite: false,
+  vertexShader: `
+    attribute float size;
+    varying vec3 vColor;
+    varying float vAlpha;
+    uniform float uTime;
+    void main() {
+      vColor = color;
+      vAlpha = 0.6 + 0.4 * sin(uTime * 1.5 + position.x * 0.3);
+      vec4 mv = modelViewMatrix * vec4(position, 1.0);
+      gl_PointSize = size * (300.0 / -mv.z);
+      gl_Position = projectionMatrix * mv;
+    }
+  `,
+  fragmentShader: `
+    varying vec3 vColor;
+    varying float vAlpha;
+    void main() {
+      vec2 uv = gl_PointCoord - 0.5;
+      float d = length(uv);
+      if (d > 0.5) discard;
+      float alpha = (1.0 - d * 2.0) * vAlpha;
+      gl_FragColor = vec4(vColor, alpha * 0.85);
+    }
+  `,
+  uniforms: { uTime: { value: 0 } }
+});
+
+const points = new THREE.Points(geo, mat);
+scene.add(points);
+
+// ─── GRID LINES ──────────────────────────────────────────────────
+function addGridLines() {
+  const lineMat = new THREE.LineBasicMaterial({ color: 0x00ffa3, transparent: true, opacity: 0.06 });
+  const gridGroup = new THREE.Group();
+  for (let i = -12; i <= 12; i += 2) {
+    const vg = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(i,-10,-5), new THREE.Vector3(i,10,-5)]);
+    const hg = new THREE.BufferGeometry().setFromPoints([new THREE.Vector3(-12,i,-5), new THREE.Vector3(12,i,-5)]);
+    gridGroup.add(new THREE.Line(vg, lineMat));
+    gridGroup.add(new THREE.Line(hg, lineMat));
+  }
+  gridGroup.visible = false;
+  scene.add(gridGroup);
+  return gridGroup;
+}
+const gridLines = addGridLines();
+
+// ─── TARGET GRID POSITIONS ───────────────────────────────────────
+const cols = 20, rows = 14;
+const targets = [];
+for (let i = 0; i < CHAOS_COUNT; i++) {
+  const c = i % cols, r = Math.floor(i / cols);
+  targets.push(
+    (c - cols/2) * 1.7 + 4,
+    (r - rows/2) * 1.7,
+    0
+  );
+}
+
+// ─── MOUSE ───────────────────────────────────────────────────────
+const mouse = { x: 0, y: 0, nx: 0, ny: 0 };
+document.addEventListener('mousemove', e => {
+  mouse.x = e.clientX; mouse.y = e.clientY;
+  mouse.nx = (e.clientX / innerWidth - 0.5) * 2;
+  mouse.ny = -(e.clientY / innerHeight - 0.5) * 2;
+});
+
+// ─── CURSOR ──────────────────────────────────────────────────────
+const curEl = document.getElementById('cur');
+const ringEl = document.getElementById('cur-ring');
+let rx = 0, ry = 0;
+function lerp(a, b, t) { return a + (b - a) * t; }
+
+
+// ─── ANIMATION STATE ─────────────────────────────────────────────
+let phase = 'chaos'; // 'chaos' | 'transitioning' | 'order'
+let transitionProgress = 0;
+let time = 0;
+const clock = new THREE.Clock();
+
+// ─── INITIAL PAGE REVEAL ─────────────────────────────────────────
+window.addEventListener('load', () => {
+  // Logo + Nav
+  setTimeout(() => {
+    document.getElementById('logo').style.opacity = '1';
+    document.getElementById('logo').style.transform = 'translateY(0)';
+    document.getElementById('nav').style.opacity = '1';
+    document.getElementById('bottom-bar').style.opacity = '1';
+  }, 300);
+
+  // Eyebrow
+  gsap.to('#chaos-eyebrow', { opacity: 1, y: 0, duration: 0.8, delay: 0.5 });
+  // Title
+  gsap.to('#chaos-title', { opacity: 1, duration: 1.0, delay: 0.8, ease: 'power2.out' });
+  // Sub
+  gsap.to('#chaos-sub', { opacity: 1, y: 0, duration: 0.8, delay: 1.1 });
+
+  // Animate stats counters
+  setTimeout(() => {
+    gsap.to('#chaos-stats', { opacity: 1, y: 0, duration: 0.8 });
+    animateCounter('stat1', 0, 23, 1800, v => v);
+    animateCounter('stat2', 0, 34, 1800, v => v + '%');
+    animateCounter('stat3', 0, 18, 1800, v => v + 'h');
+  }, 1400);
+
+  // Button
+  gsap.to('#activate-btn', { opacity: 1, y: 0, duration: 0.8, delay: 1.8 });
+});
+
+function animateCounter(id, from, to, dur, format) {
+  const el = document.getElementById(id);
+  const start = performance.now();
+  function step(now) {
+    const t = Math.min((now - start) / dur, 1);
+    const ease = 1 - Math.pow(1 - t, 3);
+    el.textContent = format(Math.round(from + (to - from) * ease));
+    if (t < 1) requestAnimationFrame(step);
+  }
+  requestAnimationFrame(step);
+}
+
+// ─── ACTIVATE ────────────────────────────────────────────────────
+function activatePaico() {
+  if (phase !== 'chaos') return;
+  phase = 'transitioning';
+
+  // Flash effect
+  gsap.to('#flash', { opacity: 0.08, duration: 0.15, yoyo: true, repeat: 1, ease: 'power2.inOut' });
+
+  // Fade chaos UI
+  gsap.to('#phase-chaos', { opacity: 0, duration: 0.7, ease: 'power2.in' });
+  gsap.to(points.rotation, { y: Math.PI * 0.5, duration: 1.5, ease: 'power2.inOut' });
+
+  // Camera drift left
+  gsap.to(camera.position, { x: -5, z: 26, duration: 2.5, ease: 'power2.inOut' });
+
+  // Show grid floor
+  document.getElementById('grid-floor').style.opacity = '1';
+
+  // After 800ms start settling particles
+  setTimeout(() => { phase = 'order'; transitionProgress = 0; }, 800);
+
+  // Show order UI
+  setTimeout(() => {
+    document.getElementById('phase-order').style.opacity = '1';
+    gsap.from('#order-left > *', { opacity: 0, y: 20, stagger: 0.12, duration: 0.8, ease: 'power2.out' });
+
+    // Feature rows
+    document.querySelectorAll('.feature-row').forEach((el, i) => {
+      gsap.to(el, { opacity: 1, x: 0, duration: 0.6, delay: 0.6 + i * 0.1, ease: 'power2.out' });
+    });
+
+    // CTA
+    gsap.to('#order-cta', { opacity: 1, duration: 0.6, delay: 1.2 });
+
+    // Dashboard
+    gsap.to('#dashboard-preview', { opacity: 1, duration: 0.8, delay: 0.4, ease: 'power2.out' });
+    gsap.from('#card-main',   { y: 30, opacity: 0, duration: 0.7, delay: 0.5 });
+    gsap.from('#card-supply', { y: 30, opacity: 0, duration: 0.7, delay: 0.65 });
+    gsap.from('#card-orders', { y: 30, opacity: 0, duration: 0.7, delay: 0.8 });
+    gsap.from('#card-score',  { y: 30, opacity: 0, duration: 0.7, delay: 0.95 });
+
+    gridLines.visible = true;
+    gsap.to(gridLines.children.map(c => c.material), { opacity: 0.06, duration: 1.5 });
+  }, 1200);
+}
+
+// ─── RENDER LOOP ─────────────────────────────────────────────────
+function animate() {
+  requestAnimationFrame(animate);
+  time = clock.getElapsedTime();
+  mat.uniforms.uTime.value = time;
+
+  const pos = geo.attributes.position.array;
+
+  if (phase === 'chaos') {
+    // Drift + group rotation
+    points.rotation.y += 0.0006;
+    points.rotation.x += 0.0003;
+    for (let i = 0; i < CHAOS_COUNT; i++) {
+      const i3 = i * 3;
+      pos[i3]   += velocities[i3];
+      pos[i3+1] += velocities[i3+1];
+      pos[i3+2] += velocities[i3+2];
+      if (Math.abs(pos[i3])   > 18) velocities[i3]   *= -1;
+      if (Math.abs(pos[i3+1]) > 12) velocities[i3+1] *= -1;
+      if (Math.abs(pos[i3+2]) > 8)  velocities[i3+2] *= -1;
+    }
+    // Subtle mouse parallax
+    points.rotation.y += mouse.nx * 0.0004;
+    points.rotation.x -= mouse.ny * 0.0004;
+  }
+
+  if (phase === 'order') {
+    transitionProgress = Math.min(transitionProgress + 0.008, 1);
+    const ease = 1 - Math.pow(1 - transitionProgress, 4);
+
+    for (let i = 0; i < CHAOS_COUNT; i++) {
+      const i3 = i * 3;
+      const delay = i / CHAOS_COUNT;
+      const p = Math.max(0, (ease - delay * 0.3) / 0.7);
+      pos[i3]   = lerp(pos[i3],   targets[i3],   p * 0.08);
+      pos[i3+1] = lerp(pos[i3+1], targets[i3+1], p * 0.08);
+      pos[i3+2] = lerp(pos[i3+2], targets[i3+2], p * 0.08); 
+    }
+
+    // Gentle float after settling
+    if (transitionProgress > 0.95) {
+      for (let i = 0; i < CHAOS_COUNT; i++) {
+        const i3 = i * 3;
+        pos[i3+1] += Math.sin(time * 0.8 + i * 0.3) * 0.001;
+      }
+    }
+
+    // Camera + mouse parallax in order mode
+    points.rotation.y = lerp(points.rotation.y, mouse.nx * 0.06, 0.02);
+    points.rotation.x = lerp(points.rotation.x, -mouse.ny * 0.04, 0.02);
+  }
+
+  geo.attributes.position.needsUpdate = true;
+  renderer.render(scene, camera);
+}
+animate();
+
+// ─── RESIZE ──────────────────────────────────────────────────────
+window.addEventListener('resize', () => {
+  camera.aspect = innerWidth / innerHeight;
+  camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+</script>
 </body>
 </html>
