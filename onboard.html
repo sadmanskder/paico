@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>যোগ দিন | Paico BD - বাংলাদেশের পাইকারি বাজার</title>
+
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+
+    <style>
+        :root {
+            --primary-blue: #0d47a1;
+            --secondary-blue: #1565c0;
+            --bg-light: #f8f9fa;
+            --white: #ffffff;
+            --text-dark: #333;
+            --whatsapp-green: #25D366;
+        }
+
+        * { margin:0; padding:0; box-sizing:border-box; scroll-behavior: smooth; }
+        body { font-family:'Hind Siliguri', sans-serif; background: var(--bg-light); color: var(--text-dark); line-height: 1.6; }
+
+        .container { max-width: 1100px; margin: auto; padding: 60px 20px; }
+
+        /* Header Styles */
+        .onboarding-header { text-align: center; margin-bottom: 50px; }
+        .onboarding-header h2 { font-size: 36px; color: var(--primary-blue); margin-bottom: 10px; }
+        .onboarding-header p { font-size: 18px; color: #666; }
+
+        /* Grid Layout */
+        .grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--white);
+            padding: 40px;
+            border-radius: 20px;
+            text-align: center;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.05);
+            border: 2px solid transparent;
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: var(--secondary-blue);
+            box-shadow: 0 15px 40px rgba(13, 71, 161, 0.1);
+        }
+
+        .card-icon {
+            font-size: 50px;
+            color: var(--secondary-blue);
+            margin-bottom: 20px;
+        }
+
+        .card h3 { font-size: 26px; margin-bottom: 15px; color: #111; }
+        
+        /* Benefit List */
+        .benefit-list {
+            text-align: left;
+            margin: 25px 0;
+            list-style: none;
+        }
+
+        .benefit-list li {
+            margin-bottom: 12px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            font-size: 15px;
+        }
+
+        .benefit-list li i { color: #2ecc71; font-size: 18px; }
+
+        .btn {
+            display: block;
+            padding: 15px 30px;
+            border-radius: 50px;
+            text-decoration: none;
+            font-weight: 700;
+            background: var(--secondary-blue);
+            color: #fff;
+            transition: 0.3s;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .btn:hover { background: var(--primary-blue);color:white; box-shadow: 0 5px 15px rgba(0,0,0,0.2); }
+        .btn-outline { background: transparent; border: 2px solid var(--secondary-blue); color: var(--secondary-blue); }
+
+        /* Trust Section */
+        .trust-section {
+            margin-top: 80px;
+            text-align: center;
+            background: #fff;
+            padding: 40px;
+            border-radius: 20px;
+        }
+
+        .trust-badges {
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            flex-wrap: wrap;
+            margin-top: 20px;
+        }
+
+        .badge-item { display: flex; align-items: center; gap: 8px; font-weight: 600; color: #555; }
+        .badge-item i { color: var(--secondary-blue); font-size: 20px; }
+
+        /* Testimonial Section */
+        .testimonial-mini {
+            margin-top: 60px;
+            background: linear-gradient(135deg, #0d47a1, #1565c0);
+            color: white;
+            padding: 50px;
+            border-radius: 20px;
+            text-align: center;
+        }
+
+        .testimonial-mini blockquote { font-size: 20px; font-style: italic; margin-bottom: 20px; }
+
+        /* Footer Info */
+        .footer-info {
+            text-align: center;
+            margin-top: 60px;
+            padding-bottom: 100px;
+            font-size: 14px;
+            color: #888;
+        }
+
+        /* Float Buttons */
+        .whatsapp-float, .call-float {
+            position:fixed; right:20px; width:55px; height:55px; border-radius:50%;
+            display:flex; align-items:center; justify-content:center; color:#fff;
+            font-size:24px; z-index:999; box-shadow:0 5px 15px rgba(0,0,0,0.2);
+        }
+        .whatsapp-float { bottom:90px; background: var(--whatsapp-green); }
+        .call-float { bottom:160px; background: var(--primary-blue); }
+
+        .mobile-cta { display:none; }
+
+        /* Responsive */
+        @media(max-width:768px){
+            .grid { grid-template-columns: 1fr; gap: 20px; }
+            .container { padding: 40px 15px; }
+            .onboarding-header h2 { font-size: 28px; }
+            .mobile-cta {
+                position:fixed; bottom:0; left:0; width:100%; display:flex; z-index: 1000;
+            }
+            .mobile-cta a { flex:1; text-align:center; padding:16px 0; color:#fff; font-weight:600; text-decoration:none; }
+            .mobile-cta a:first-child { background: var(--primary-blue); }
+            .mobile-cta a:last-child { background: var(--whatsapp-green); }
+            body { padding-bottom: 60px; }
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div class="onboarding-header">
+        <a href="index.html" style="text-decoration: none;">
+            <img src="https://marketplace.paicobd.com/assets/uploads/logo.png" height="50" alt="Paico BD" style="margin-bottom: 20px;">
+        </a>
+        <h2>Welcome to Paico</h2>
+        <p>Select the right option based on your business type</p>
+    </div>
+
+    <div class="grid">
+        <div class="card">
+            <div>
+                <div class="card-icon"><i class="fas fa-store"></i></div>
+                <h3>I Run a Shop / Retailer</h3>
+                <p>Do you want to buy products at wholesale prices and sell in your store?</p>
+                <ul class="benefit-list">
+                    <li><i class="fas fa-check-circle"></i> Direct factory pricing</li>
+                    <li><i class="fas fa-check-circle"></i> Even 1 piece at wholesale rate</li>
+                    <li><i class="fas fa-check-circle"></i> Cash on Delivery nationwide</li>
+                    <li><i class="fas fa-check-circle"></i> Easy return policy</li>
+                </ul>
+            </div>
+            <a href="https://marketplace.paicobd.com/registration.php" class="btn">Join as Buyer</a>
+        </div>
+
+        <div class="card">
+            <div>
+                <div class="card-icon"><i class="fas fa-truck-loading"></i></div>
+                <h3>I Supply / Import Products</h3>
+                <p>Want your products to reach thousands of retailers across Bangladesh?</p>
+                <ul class="benefit-list">
+                    <li><i class="fas fa-check-circle"></i> 50,000+ verified buyers</li>
+                    <li><i class="fas fa-check-circle"></i> We handle logistics & delivery</li>
+                    <li><i class="fas fa-check-circle"></i> Fast payment settlements</li>
+                    <li><i class="fas fa-check-circle"></i> Free digital marketing support</li>
+                </ul>
+            </div>
+            <a href="https://supplier.paicobd.com" class="btn btn-outline">Join as Supplier</a>
+        </div>
+    </div>
+
+    <div class="testimonial-mini">
+        <i class="fas fa-quote-left" style="font-size: 30px; margin-bottom: 15px; opacity: 0.5;"></i>
+        <blockquote>
+            "After joining Paico BD, my monthly shop profit increased by nearly 30%. 
+            I no longer have to travel to Chawkbazar to source products."
+        </blockquote>
+        <p><strong>- Md. Jasim Uddin (Business Owner, Cumilla)</strong></p>
+    </div>
+
+    <div class="trust-section">
+        <h3>Why Choose Us?</h3>
+        <div class="trust-badges">
+            <div class="badge-item"><i class="fas fa-shield-alt"></i> 100% Secure Transactions</div>
+            <div class="badge-item"><i class="fas fa-handshake"></i> Verified Sellers</div>
+            <div class="badge-item"><i class="fas fa-headset"></i> 24/7 Support</div>
+            <div class="badge-item"><i class="fas fa-money-bill-wave"></i> Cash on Delivery</div>
+        </div>
+    </div>
+
+    <div class="footer-info">
+        <p>&copy; 2026 Paico BD | Bangladesh’s Digital Wholesale Marketplace</p>
+        <p>For assistance call: +8801710000000</p>
+    </div>
+</div>
+
+<a href="https://wa.me/8801700000000" class="whatsapp-float" target="_blank">
+    <i class="fab fa-whatsapp"></i>
+</a>
+
+<a href="tel:+8801700000000" class="call-float">
+    <i class="fas fa-phone"></i>
+</a>
+
+<div class="mobile-cta">
+    <a href="tel:+8801700000000"><i class="fas fa-phone"></i> Call Now</a>
+    <a href="https://wa.me/8801700000000"><i class="fab fa-whatsapp"></i> Chat Now</a>
+</div>
+
+</body>
+</html>
